@@ -1,0 +1,14 @@
+.hero {
+  background-image: var(--hero-desktop-bg);
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 30rem;
+  width: 100vw;
+}
+
+@media screen and (max-width: 375px) {
+  .hero {
+    background-image: var(--hero-mobile-bg);
+    height: 20rem;
+  }
+}

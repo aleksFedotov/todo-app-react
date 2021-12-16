@@ -1,24 +1,19 @@
-import logo from './logo.svg';
+import { Fragment } from 'react/cjs/react.production.min';
 import './App.css';
 
+import Hero from './components/UI/hero/Hero';
+import TodoHeader from './components/todolist/header/TodoHeader';
+
 function App() {
+  const root = document.querySelector(':root');
+  root.className = 'light-theme';
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Fragment>
+      <Hero />
+      <div className="todo-list">
+        <TodoHeader />
+      </div>
+    </Fragment>
   );
 }
 
