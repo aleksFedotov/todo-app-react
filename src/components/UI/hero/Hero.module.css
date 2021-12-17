@@ -1,7 +1,8 @@
 .hero {
   background-image: var(--hero-desktop-bg);
-  background-position: center;
+  background-position: center center;
   background-repeat: no-repeat;
+  background-size: cover;
   height: 30rem;
   width: 100vw;
 }

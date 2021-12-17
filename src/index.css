@@ -9,32 +9,34 @@
 }
 
 :root,
+:root.dark-theme {
+  --main-bg: hsl(235, 21%, 11%);
+  --list-bg: hsl(235, 24%, 19%);
+  --color-list-item: hsl(234, 39%, 85%);
+  --color-logo: hsl(236, 33%, 92%);
+  --color-action-btn: hsl(234, 11%, 52%);
+  --Very-Dark-Grayish-Blue: hsl(233, 14%, 35%);
+  --color-circle-unfocus: hsl(237, 14%, 26%);
+
+  --bright-blue: hsl(220, 98%, 61%);
+
+  --hero-desktop-bg: url('./images/bg-desktop-dark.jpg');
+  --hero-mobile-bg: url('./images/bg-mobile-dark.jpg');
+}
 :root.light-theme {
   --bright-blue: hsl(220, 98%, 61%);
   --check-bg: linear-gradient hsl(192, 100%, 67%) to hsl(280, 87%, 65%);
   --main-bg: hsl(0, 0%, 98%);
   --list-bg: hsl(236, 33%, 92%);
-  --very-light-gray: hsl(233, 11%, 84%);
+  --color-logo: hsl(236, 33%, 92%);
+  --color-circle-unfocus: hsl(233, 11%, 84%);
   --dark-grayish-blue: hsl(236, 9%, 61%);
-  --very-dark-grayish-blue: hsl(235, 19%, 35%);
+  --color-list-item: hsl(235, 19%, 35%);
 
   --hero-desktop-bg: url('./images/bg-desktop-light.jpg');
   --hero-mobile-bg: url('./images/bg-mobile-light.jpg');
-}
 
-:root.dark-theme {
-  --main-bg: hsl(235, 21%, 11%);
-  --list-bg: hsl(235, 24%, 19%);
-  --color-list-item: hsl(234, 39%, 85%);
-  --Light-Grayish-Blue: hsl(236, 33%, 92%);
-  --color-action-btn: hsl(234, 11%, 52%);
-  --Very-Dark-Grayish-Blue: hsl(233, 14%, 35%);
-  --Very-Dark-Grayish-Blue: hsl(237, 14%, 26%);
   --bright-blue: hsl(220, 98%, 61%);
-  --check-bg: linear-gradient hsl(192, 100%, 67%) to hsl(280, 87%, 65%);
-
-  --hero-desktop-bg: url('./images/bg-desktop-dark.jpg');
-  --hero-mobile-bg: url('./images/bg-mobile-dark.jpg');
 }
 
 html {
@@ -47,13 +49,4 @@ body {
   font-family: 'Josefin Sans', sans-serif;
 
   background-color: var(--main-bg);
-}
-
-#root {
-  width: 100%;
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  justify-content: center;
 }

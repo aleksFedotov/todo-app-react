@@ -3,16 +3,18 @@ import './App.css';
 
 import Hero from './components/UI/hero/Hero';
 import TodoHeader from './components/todolist/header/TodoHeader';
+import NewTodo from './components/todolist/new-todo/NewTodo';
+import List from './components/todolist/list/List';
 
 function App() {
-  const root = document.querySelector(':root');
-  root.className = 'light-theme';
   return (
     <Fragment>
       <Hero />
-      <div className="todo-list">
+      <main className="todo-list">
         <TodoHeader />
-      </div>
+        <NewTodo />
+        <List />
+      </main>
     </Fragment>
   );
 }

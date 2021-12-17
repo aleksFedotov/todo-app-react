@@ -1,0 +1,24 @@
+.todo {
+  display: flex;
+  align-items: center;
+}
+
+.text {
+  text-align: left;
+}
+
+.circle {
+  height: 2.6rem;
+  max-width: 2.6rem;
+  width: 100%;
+  border: var(--color-circle-unfocus) 1px solid;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.checked {
+  background: linear-gradient(hsl(192, 100%, 67%), hsl(280, 87%, 65%));
+  border-color: linear-gradient(hsl(192, 100%, 67%), hsl(280, 87%, 65%));
+}
