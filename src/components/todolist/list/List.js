@@ -2,13 +2,14 @@ import React from 'react';
 
 import LIstItem from './list-item/LIstItem';
 import Card from '../../UI/card/Card';
+import ListFooter from '../footer/ListFooter';
 
 import styles from './List.module.css';
 
 const DUMMY_DATA = [
   {
     id: 'l1',
-    text: 'Complete on;ine JavaScript course',
+    text: 'Complete online JavaScript course',
     compeleted: true,
   },
   { id: 'l2', text: 'Jog around the park 3x', compeleted: false },
@@ -34,6 +35,7 @@ const List = () => {
         </ul>
         <div></div>
       </div>
+      <ListFooter />
     </Card>
   );
 };

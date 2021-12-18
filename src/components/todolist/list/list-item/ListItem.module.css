@@ -1,10 +1,15 @@
 .todo {
   display: flex;
   align-items: center;
+  padding: 1.8rem;
+  border-bottom: solid 1px var(--color-circle-unfocus);
 }
 
 .text {
   text-align: left;
+  margin-left: 2.5rem;
+  color: var(--color-list-item);
+  cursor: pointer;
 }
 
 .circle {
@@ -16,9 +21,41 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  cursor: pointer;
 }
 
-.checked {
+.checked .circle,
+.todo.checked:hover .circle {
   background: linear-gradient(hsl(192, 100%, 67%), hsl(280, 87%, 65%));
-  border-color: linear-gradient(hsl(192, 100%, 67%), hsl(280, 87%, 65%));
+}
+
+.checked .text {
+  text-decoration: line-through;
+  color: var(--color-text-checked);
+}
+
+.todo:hover .circle {
+  border: 1px solid transparent;
+
+  background-image: linear-gradient(var(--list-bg), var(--list-bg)),
+    radial-gradient(circle at top left, hsl(192, 100%, 67%), hsl(280, 87%, 65%));
+
+  background-origin: border-box;
+  background-clip: content-box, border-box;
+  transition: all 0.5s linear;
+}
+
+.delete-btn {
+  transform: scale(0);
+  justify-self: end;
+  color: #3e4059;
+  font-size: 14px;
+  font-weight: bold;
+  margin-left: auto;
+  cursor: pointer;
+}
+
+.todo:hover .delete-btn {
+  transform: scale(1);
+  transition: all 0.5s linear;
 }

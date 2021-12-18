@@ -34,3 +34,9 @@
   border: var(--color-circle-unfocus) 1px solid;
   border-radius: 50%;
 }
+
+@media screen and (max-width: 375px) {
+  .m-50 {
+    margin-top: 3.5rem;
+  }
+}
