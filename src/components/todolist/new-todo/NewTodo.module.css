@@ -8,13 +8,13 @@
 }
 
 .new-todo input {
+  display: inline-block;
   font-family: inherit;
   font-size: inherit;
   background-color: transparent;
   border: none;
   margin-left: 2.5rem;
   width: 100%;
-  overflow-wrap: break-word;
   color: var(--color-list-item);
   font-weight: 400;
 }

@@ -16,7 +16,6 @@ const TodoHeader = () => {
       root.className = 'light-theme';
       setTheme('light-theme');
     }
-    console.log(root.className);
   };
 
   return (

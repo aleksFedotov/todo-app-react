@@ -1,4 +1,5 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
 
 import LIstItem from './list-item/LIstItem';
 import Card from '../../UI/card/Card';
@@ -6,36 +7,42 @@ import ListFooter from '../footer/ListFooter';
 
 import styles from './List.module.css';
 
-const DUMMY_DATA = [
-  {
-    id: 'l1',
-    text: 'Complete online JavaScript course',
-    compeleted: true,
-  },
-  { id: 'l2', text: 'Jog around the park 3x', compeleted: false },
-  { id: 'l3', text: '10 minutes meditation', compeleted: false },
-  { id: 'l4', text: 'Read for 1 hour', compeleted: false },
-  { id: 'l5', text: 'Pick up groceries', compeleted: false },
-  { id: 'l6', text: 'Complete Todo App on Fronted Mentor', compeleted: false },
-];
-
 const List = () => {
+  // Get todos amd status from the store
+  let todos = useSelector((state) => state.todolist.todos);
+  const status = useSelector((state) => state.status.status);
+
+  // Count items left
+  const itemsLeft = todos.filter((todo) => todo.completed === false).length;
+
+  // handling list controllers
+  if (status === 'All') {
+    // Sort array so checked todos come first
+    const arrayForSort = [...todos];
+    arrayForSort.sort((a, b) => b.completed - a.completed);
+    todos = arrayForSort;
+  } else if (status === 'Active') {
+    todos = todos.filter((todo) => todo.completed === false);
+  } else {
+    todos = todos.filter((todo) => todo.completed === true);
+  }
+
   return (
     <Card className={styles['m-22']}>
       <div className={styles.list_box}>
         <ul>
-          {DUMMY_DATA.map((item) => (
+          {todos.map((item) => (
             <LIstItem
               key={item.id}
               id={item.id}
               text={item.text}
-              completed={item.compeleted}
+              completed={item.completed}
             />
           ))}
         </ul>
         <div></div>
       </div>
-      <ListFooter />
+      <ListFooter itemsLeft={itemsLeft} />
     </Card>
   );
 };
