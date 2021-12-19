@@ -1,8 +1,17 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-const initialState = {
-  status: 'All',
-};
+const localStorageStatus = JSON.parse(localStorage.getItem('status'));
+
+if (!localStorageStatus) {
+  const initialStatus = { status: 'All' };
+
+  localStorage.setItem('status', JSON.stringify(initialStatus));
+}
+
+const initialState =
+  JSON.parse(localStorage.getItem('status')) !== null
+    ? JSON.parse(localStorage.getItem('status'))
+    : { status: 'All' };
 
 const statusSlice = createSlice({
   name: 'todolist',
@@ -10,6 +19,7 @@ const statusSlice = createSlice({
   reducers: {
     setStatus(state, action) {
       state.status = action.payload;
+      localStorage.setItem('status', JSON.stringify(state));
     },
   },
 });
