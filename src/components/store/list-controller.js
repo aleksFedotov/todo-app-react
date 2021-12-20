@@ -18,7 +18,8 @@ const statusSlice = createSlice({
   initialState,
   reducers: {
     setStatus(state, action) {
-      state.status = action.payload;
+      const newStatus = action.payload;
+      state.status = newStatus;
       localStorage.setItem('status', JSON.stringify(state));
     },
   },

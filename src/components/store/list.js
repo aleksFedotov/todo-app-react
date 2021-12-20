@@ -1,4 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
+import { unstable_batchedUpdates } from 'react-dom';
 
 const localStorageTodos = JSON.parse(localStorage.getItem('todoList'));
 
@@ -27,7 +28,7 @@ if (!localStorageTodos) {
       },
       {
         id: 'l5',
-        text: 'Read for 1 hour',
+        text: 'Pick up Grocerries',
         completed: false,
       },
       {
@@ -51,23 +52,32 @@ const listSlice = createSlice({
   initialState,
   reducers: {
     addTodo(state, action) {
-      state.todos.push(action.payload);
+      const newTodo = action.payload;
+      state.todos.push(newTodo);
       localStorage.setItem('todoList', JSON.stringify(state));
     },
     deleteTodo(state, action) {
-      state.todos = state.todos.filter((todo) => todo.id !== action.payload);
+      const id = action.payload;
+      state.todos = state.todos.filter((todo) => todo.id !== id);
       localStorage.setItem('todoList', JSON.stringify(state));
     },
     toggleCheck(state, action) {
+      const id = action.payload;
       state.todos = state.todos.map((todo) =>
-        todo.id === action.payload
-          ? { ...todo, completed: !todo.completed }
-          : todo
+        todo.id === id ? { ...todo, completed: !todo.completed } : todo
       );
       localStorage.setItem('todoList', JSON.stringify(state));
     },
     clearCompleted(state) {
       state.todos = state.todos.filter((todo) => todo.completed === false);
+      localStorage.setItem('todoList', JSON.stringify(state));
+    },
+
+    dragAndDropSave(state, action) {
+      console.log('save');
+      console.log(action.payload);
+
+      state.todos = action.payload;
       localStorage.setItem('todoList', JSON.stringify(state));
     },
   },

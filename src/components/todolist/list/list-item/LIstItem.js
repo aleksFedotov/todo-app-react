@@ -1,5 +1,6 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
+import { Draggable } from 'react-beautiful-dnd';
 
 import styles from './ListItem.module.css';
 
@@ -17,21 +18,28 @@ const LIstItem = (props) => {
     dispatch(listActions.toggleCheck(props.id));
   };
   return (
-    <li
-      className={
-        props.completed ? `${styles.todo} ${styles.checked}` : styles.todo
-      }
-    >
-      <div className={styles.circle} onClick={toggleHandler}>
-        {props.completed ? <Check /> : ''}
-      </div>
-      <p className={styles.text} onClick={toggleHandler}>
-        {props.text}
-      </p>
-      <div className={styles['delete-btn']} onClick={deleteHandler}>
-        &#x2573;
-      </div>
-    </li>
+    <Draggable draggableId={props.id} index={props.index}>
+      {(provided) => (
+        <li
+          className={
+            props.completed ? `${styles.todo} ${styles.checked}` : styles.todo
+          }
+          {...provided.draggableProps}
+          {...provided.dragHandleProps}
+          ref={provided.innerRef}
+        >
+          <div className={styles.circle} onClick={toggleHandler}>
+            {props.completed ? <Check /> : ''}
+          </div>
+          <p className={styles.text} onClick={toggleHandler}>
+            {props.text}
+          </p>
+          <div className={styles['delete-btn']} onClick={deleteHandler}>
+            &#x2573;
+          </div>
+        </li>
+      )}
+    </Draggable>
   );
 };
 
