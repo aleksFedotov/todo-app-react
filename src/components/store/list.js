@@ -1,5 +1,4 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { unstable_batchedUpdates } from 'react-dom';
 
 const localStorageTodos = JSON.parse(localStorage.getItem('todoList'));
 
@@ -74,9 +73,6 @@ const listSlice = createSlice({
     },
 
     dragAndDropSave(state, action) {
-      console.log('save');
-      console.log(action.payload);
-
       state.todos = action.payload;
       localStorage.setItem('todoList', JSON.stringify(state));
     },

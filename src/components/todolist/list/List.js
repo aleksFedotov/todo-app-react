@@ -19,23 +19,29 @@ const List = () => {
   // Count items left
   const itemsLeft = todos.filter((todo) => todo.completed === false).length;
 
+  let filteredTodos;
+
   // handling list controllers
   if (status === 'All') {
     // Sort array so checked todos come first
     const arrayForSort = [...todos];
     arrayForSort.sort((a, b) => b.completed - a.completed);
-    todos = arrayForSort;
+    filteredTodos = arrayForSort;
   } else if (status === 'Active') {
-    todos = todos.filter((todo) => todo.completed === false);
+    filteredTodos = todos.filter((todo) => todo.completed === false);
   } else {
-    todos = todos.filter((todo) => todo.completed === true);
+    filteredTodos = todos.filter((todo) => todo.completed === true);
   }
 
   const onDragEndHandler = (result) => {
     const { destination, source } = result;
+
+    // Handling dragging and dropping out of box
     if (!destination) {
       return;
     }
+
+    // Handling if item dropted at the same spot
 
     if (
       destination.droppableId === source.droppableId &&
@@ -44,6 +50,24 @@ const List = () => {
       return;
     }
 
+    // Handling darging and dropping in kist with different status
+    if (status === 'Active' || status === 'Completed') {
+      const todosUpdated = Array.from(filteredTodos);
+      const [reorderedTodo] = todosUpdated.splice(source.index, 1);
+      todosUpdated.splice(destination.index, 0, reorderedTodo);
+      if (status === 'Active') {
+        const checked = todos.filter((todo) => todo.completed === true);
+        const finallTodoList = checked.concat(todosUpdated);
+        dispatch(listActions.dragAndDropSave(finallTodoList));
+        return;
+      }
+      if (status === 'Completed') {
+        const unChecked = todos.filter((todo) => todo.completed === false);
+        const finallTodoList = todosUpdated.concat(unChecked);
+        dispatch(listActions.dragAndDropSave(finallTodoList));
+        return;
+      }
+    }
     const todosUpdated = Array.from(todos);
     const [reorderedTodo] = todosUpdated.splice(source.index, 1);
     todosUpdated.splice(destination.index, 0, reorderedTodo);
@@ -58,7 +82,7 @@ const List = () => {
           <Droppable droppableId="todoList">
             {(provided) => (
               <ul {...provided.droppableProps} ref={provided.innerRef}>
-                {todos.map((item, index) => (
+                {filteredTodos.map((item, index) => (
                   <LIstItem
                     key={item.id}
                     id={item.id}
